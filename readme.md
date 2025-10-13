@@ -48,3 +48,4 @@ To install mods this way:
 We appreciate your trust in ModInstaller. If you have feedback or encounter issues, feel free to open a topic in the GitHub Issues section.
 
 ![buildercgr](assets/buildercgr.png "buildercgr")
+
