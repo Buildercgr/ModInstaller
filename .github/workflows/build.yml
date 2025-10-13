@@ -19,34 +19,31 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install pyinstaller pyqt5
 
       - name: Build with PyInstaller
         run: |
-          pyinstaller --onedir --windowed main.py --add-data "style.qss${{ runner.os == 'Windows' && ';' || ':' }}."
+          pyinstaller --onedir --windowed main.py --add-data "style.qss${{ matrix.os == 'windows-latest' && ';' || ':' }}."
 
-      - name: Package app
+      - name: Prepare portable folder
         run: |
           mkdir portable
           cp -r dist/main/* portable/
           cp -r assets portable/
           cp readme.md portable/
-          if [ "${{ runner.os }}" == "Windows" ]; then
-            powershell Compress-Archive -Path portable\* -DestinationPath modinstaller_windows.zip
-          elif [ "${{ runner.os }}" == "macOS" ]; then
-            zip -r modinstaller_mac.zip portable/
-          else
-            tar -czvf modinstaller_linux.tar.gz portable/
-          fi
+        shell: bash
 
-      - name: Upload release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: v1.0.0
-          name: ModInstaller v1.0.0
-          files: |
-            modinstaller_windows.zip
-            modinstaller_mac.zip
-            modinstaller_linux.tar.gz
+      - name: Compress app
+        run: |
+          Compress-Archive -Path portable\* -DestinationPath modinstaller_windows.zip
+        shell: powershell
+        if: matrix.os == 'windows-latest'
 
+      - name: Compress app
+        run: zip -r modinstaller_mac.zip portable/
+        if: matrix.os == 'macos-latest'
+
+      - name: Compress app
+        run: tar -czvf modinstaller_linux.tar.gz portable/
+        if: matrix.os == 'ubuntu-latest'
 
