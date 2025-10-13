@@ -70,7 +70,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install -y libgl1-mesa-glx
+          sudo apt install -y libgl1
           pip install pyinstaller pyqt5
 
       - name: Build with PyInstaller
