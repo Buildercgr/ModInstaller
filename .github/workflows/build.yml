@@ -2,7 +2,7 @@ name: Build ModInstaller Multiplatform
 
 on:
   push:
-    branches: [main]
+    branches: [master]
 
 permissions:
   contents: write
