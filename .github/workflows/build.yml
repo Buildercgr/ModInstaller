@@ -11,7 +11,7 @@ jobs:
   windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install dependencies
         run: pip install pyinstaller pyqt5
@@ -29,7 +29,7 @@ jobs:
         shell: powershell
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           tag_name: v1.0.1
           name: modinstaller-windows v1.0.1
@@ -38,7 +38,7 @@ jobs:
   macos:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install dependencies
         run: pip install pyinstaller pyqt5
@@ -56,7 +56,7 @@ jobs:
           zip -r modinstaller_mac.zip portable/
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           tag_name: v1.0.1
           name: modinstaller-macos v1.0.1
@@ -65,7 +65,7 @@ jobs:
   linux:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install dependencies
         run: |
@@ -86,7 +86,7 @@ jobs:
           tar -czvf modinstaller_linux.tar.gz portable/
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           tag_name: v1.0.1
           name: modinstaller-linux v1.0.1
