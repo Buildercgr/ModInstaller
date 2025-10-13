@@ -31,7 +31,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: modinstaller-windows
+          tag_name: v1.0.1
+          name: modinstaller-windows v1.0.1
           path: modinstaller_windows.zip
 
   macos:
@@ -57,7 +58,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: modinstaller-macos
+          tag_name: v1.0.1
+          name: modinstaller-macos v1.0.1
           path: modinstaller_mac.zip
 
   linux:
@@ -86,6 +88,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: modinstaller-linux
+          tag_name: v1.0.1
+          name: modinstaller-linux v1.0.1
           path: modinstaller_linux.tar.gz
           
