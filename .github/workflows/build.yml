@@ -23,7 +23,7 @@ jobs:
 
       - name: Build with PyInstaller
         run: |
-          pyinstaller --onedir --windowed main.py --add-data "style.qss${{ matrix.os == 'windows-latest' && ';' || ':' }}."
+          pyinstaller --name modInstaller --onedir --windowed main.py --add-data "style.qss${{ matrix.os == 'windows-latest' && ';' || ':' }}."
 
       - name: Prepare portable folder
         run: |
