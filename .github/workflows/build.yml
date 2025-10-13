@@ -77,3 +77,11 @@ jobs:
         with:
           name: linux-build
           path: package_linux/*
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v1.0.0
+          name: ModInstaller v1.0.0
+          files: modinstaller_windows.zip
+
