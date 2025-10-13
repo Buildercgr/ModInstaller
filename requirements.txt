@@ -1,2 +1,3 @@
 pyinstaller
 pyqt5
+requests
