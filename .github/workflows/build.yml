@@ -28,7 +28,7 @@ jobs:
       - name: Prepare portable folder
         run: |
           mkdir portable
-          cp -r dist/main/* portable/
+          cp -r dist/modInstaller/* portable/
           cp -r assets portable/
           cp readme.md portable/
         shell: bash
