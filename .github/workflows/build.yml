@@ -1,0 +1,79 @@
+name: Build ModInstaller Multiplatform
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: pip install pyinstaller pyqt5
+      - name: Build with PyInstaller
+        run: pyinstaller --onedir --windowed main.py --add-data "style.qss;."
+      - name: Package portable ZIP
+        run: |
+          mkdir portable
+          cp -r dist/main/* portable/
+          cp -r assets portable/
+          cp readme.md portable/
+          powershell Compress-Archive -Path portable\* -DestinationPath modinstaller_windows.zip
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: modinstaller-windows
+          path: modinstaller_windows.zip
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows-build
+          path: dist/*.zip,dist/*.tar.gz
+
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: pip install pyinstaller pyqt5
+      - name: Build with PyInstaller
+        run: pyinstaller --onedir --windowed main.py --add-data "style.qss:."
+      - name: Package portable ZIP
+        run: |
+          mkdir portable
+          cp -r dist/main/* portable/
+          cp -r assets portable/
+          cp readme.md portable/
+          chmod +x portable/main
+          zip -r modinstaller_mac.zip portable/
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: macos-build
+          path: modinstaller_mac.*
+
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y libgl1-mesa-glx
+          pip install pyinstaller pyqt5
+      - name: Build with PyInstaller
+        run: pyinstaller --onedir --windowed main.py --add-data "style.qss:."
+      - name: Package portable TAR.GZ
+        run: |
+          mkdir portable
+          cp -r dist/main/* portable/
+          cp -r assets portable/
+          cp readme.md portable/
+          chmod +x portable/main
+          tar -czvf modinstaller_linux.tar.gz portable/
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: linux-build
+          path: package_linux/*
