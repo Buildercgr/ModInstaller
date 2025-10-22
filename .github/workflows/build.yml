@@ -17,7 +17,7 @@ jobs:
         run: pip install pyinstaller pyqt5
 
       - name: Build with PyInstaller
-        run: pyinstaller --name modinstaller --onedir --windowed main.py --add-data "style.qss;." --hidden-import=requests
+        run: pyinstaller --name modinstaller --onedir --windowed main.py --add-data "style.qss;." --collect-submodules requests
 
       - name: Package portable ZIP
         run: |
@@ -44,7 +44,7 @@ jobs:
         run: pip install pyinstaller pyqt5
 
       - name: Build with PyInstaller
-        run: pyinstaller --name modinstaller --onedir --windowed main.py --add-data "style.qss:." --hidden-import=requests
+        run: pyinstaller --name modinstaller --onedir --windowed main.py --add-data "style.qss:." --collect-submodules requests
 
       - name: Package portable ZIP
         run: |
@@ -74,7 +74,7 @@ jobs:
           pip install pyinstaller pyqt5
 
       - name: Build with PyInstaller
-        run: pyinstaller --name modinstaller --onedir --windowed main.py --add-data "style.qss:." --hidden-import=requests
+        run: pyinstaller --name modinstaller --onedir --windowed main.py --add-data "style.qss:." --collect-submodules requests
 
       - name: Package portable TAR.GZ
         run: |
