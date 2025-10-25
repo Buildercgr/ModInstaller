@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Modinstaller
 Exec=AppRun
-Icon=icon
+Icon=logo
 Type=Application
 Categories=Utility;
 StartupNotify=false
