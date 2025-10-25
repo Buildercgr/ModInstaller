@@ -94,7 +94,7 @@ jobs:
           ./appimagetool-x86_64.AppImage Modinstaller.AppDir
           
       - name: Package portable TAR.GZ
-      - run: |
+        run: |
           mkdir portable
           cp Modinstaller*.AppImage portable/
           cp -r assets portable/
