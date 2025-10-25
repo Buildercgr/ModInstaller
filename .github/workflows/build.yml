@@ -17,7 +17,7 @@ jobs:
         run: pip install pyinstaller pyqt5 requests
 
       - name: Build with PyInstaller
-        run: pyinstaller --name modinstaller --onedir --windowed main.py --add-data "style.qss;." 
+        run: pyinstaller --name modinstaller --onedir --icon "assets/logo.png" --windowed main.py --add-data "style.qss;." 
 
       - name: Package portable ZIP
         run: |
@@ -76,6 +76,23 @@ jobs:
       - name: Build with PyInstaller
         run: pyinstaller --name modinstaller --onedir --windowed main.py --add-data "style.qss:." 
 
+      - name: Download AppImageTool
+        run: |
+          wget https://github.com/AppImage/appimagetool/releases/latest/download/appimagetool-x86_64.AppImage
+          chmod +x appimagetool-x86_64.AppImage
+
+      - name: Prepare AppDir
+        run: |
+          mkdir -p Modinstaller.AppDir/usr/bin
+          cp dist/modinstaller/modinstaller Modinstaller.AppDir/usr/bin/
+          cp AppRun Modinstaller.AppDir/
+          cp modinstaller.desktop Modinstaller.AppDir/
+          cp assets/logo.png Modinstaller.AppDir/
+
+      - name: Build AppImage
+        run: |
+          ./appimagetool-x86_64.AppImage Modinstaller.AppDir
+          
       - name: Package portable TAR.GZ
         run: |
           mkdir portable
