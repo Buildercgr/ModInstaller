@@ -17,7 +17,7 @@ jobs:
         run: pip install pyinstaller pyqt5 requests
 
       - name: Build with PyInstaller
-        run: pyinstaller --name modinstaller --onedir --icon "assets/logo.png" --windowed main.py --add-data "style.qss;." 
+        run: pyinstaller --name modinstaller --onedir --windowed main.py --add-data "style.qss;." 
 
       - name: Package portable ZIP
         run: |
@@ -94,12 +94,11 @@ jobs:
           ./appimagetool-x86_64.AppImage Modinstaller.AppDir
           
       - name: Package portable TAR.GZ
-        run: |
+      - run: |
           mkdir portable
-          cp -r dist/modinstaller/* portable/
+          cp Modinstaller*.AppImage portable/
           cp -r assets portable/
           cp readme.md portable/
-          chmod +x portable/modinstaller
           tar -czvf modinstaller_linux.tar.gz portable/
 
       - name: Upload artifact
