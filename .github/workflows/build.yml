@@ -84,7 +84,7 @@ jobs:
       - name: Prepare AppDir
         run: |
           mkdir -p Modinstaller.AppDir/usr/bin
-          cp dist/modinstaller/modinstaller Modinstaller.AppDir/usr/bin/
+          cp dist/modinstaller Modinstaller.AppDir/usr/bin/
           cp AppRun Modinstaller.AppDir/
           chmod +x Modinstaller.AppDir/AppRun
           cp modinstaller.desktop Modinstaller.AppDir/
