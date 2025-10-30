@@ -51,7 +51,7 @@ jobs:
           mkdir -p modinstaller.app/MacOs
           cp -r dist/modinstaller/* modinstaller.app/MacOs
           chmod +x modinstaller.app/MacOs/modinstaller
-          cp -r Info.plist/* modinstaller.app/
+          cp -r Info.plist modinstaller.app/
 
       - name: Package portable ZIP
         run: |
