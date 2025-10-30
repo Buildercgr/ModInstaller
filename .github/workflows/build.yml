@@ -46,6 +46,14 @@ jobs:
       - name: Build with PyInstaller
         run: pyinstaller --name modinstaller --onedir --windowed main.py --add-data "style.qss:." 
 
+      - name: Prepare structure for .app
+        run: |
+          mkdir modinstaller
+          cp -r dist/modinstaller/* modinstaller/
+          cp -r assets modinstaller/
+          cp readme.md modinstaller/
+          chmod +x modinstaller/modinstaller
+
       - name: Package portable ZIP
         run: |
           mkdir portable
