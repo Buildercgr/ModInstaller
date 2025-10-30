@@ -48,10 +48,10 @@ jobs:
 
       - name: Prepare structure for .app
         run: |
-          mkdir modinstaller.app/MacOs
+          mkdir -p modinstaller.app/MacOs
           cp -r dist/modinstaller/* modinstaller.app/MacOs
           chmod +x modinstaller/modinstaller
-          cp -r Info.plist/* modinstaller/
+          cp -r Info.plist/* modinstaller.app/
 
       - name: Package portable ZIP
         run: |
