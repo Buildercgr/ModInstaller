@@ -48,19 +48,17 @@ jobs:
 
       - name: Prepare structure for .app
         run: |
-          mkdir modinstaller
-          cp -r dist/modinstaller/* modinstaller/
-          cp -r assets modinstaller/
-          cp readme.md modinstaller/
+          mkdir modinstaller.app
+          cp -r dist/modinstaller/* modinstaller.app/MacOs
           chmod +x modinstaller/modinstaller
+          cp -r Info.plist/* modinstaller/
 
       - name: Package portable ZIP
         run: |
           mkdir portable
-          cp -r dist/modinstaller/* portable/
+          cp -r modinstaller.app/* portable/
           cp -r assets portable/
           cp readme.md portable/
-          chmod +x portable/modinstaller
           zip -r modinstaller_mac.zip portable/
 
       - name: Upload artifact
