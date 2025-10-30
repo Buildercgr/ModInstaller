@@ -48,7 +48,7 @@ jobs:
 
       - name: Prepare structure for .app
         run: |
-          mkdir modinstaller.app
+          mkdir modinstaller.app/MacOs
           cp -r dist/modinstaller/* modinstaller.app/MacOs
           chmod +x modinstaller/modinstaller
           cp -r Info.plist/* modinstaller/
