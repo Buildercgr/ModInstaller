@@ -11,7 +11,8 @@ Welcome to **ModInstaller**! This guide will help you understand how to use the 
 To begin, run the `modInstaller` file included in this folder. Depending on your operating system, the file may have one of the following formats:
 
 - `.exe` for **Windows**  
-- `binary` for **macOS** and **Linux**  
+- `.app` for **macOS**
+- `.appImage` for **Linux**
 
 Once launched, the ModInstaller window will appear with several options. One of the key fields is the **Minecraft mods folder**, which is where all selected mods will be installed.
 
