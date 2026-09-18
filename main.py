@@ -3,6 +3,7 @@ import requests
 import shutil
 import os
 import sys
+import platform
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (
@@ -78,7 +79,7 @@ class ModInstaller(QWidget):
 
         path_layout = QHBoxLayout()
         self.path_entry = QLineEdit()
-        default_minecraft_path = get_default_minecraft_path(self)
+        default_minecraft_path = self.get_default_minecraft_path()
         self.path_entry.setText(default_minecraft_path)
         path_layout.addWidget(self.path_entry)
 
@@ -117,9 +118,9 @@ class ModInstaller(QWidget):
 
         if current_os == "Windows":
             return os.path.join(os.getenv("APPDATA"), ".minecraft")
-        elif current_os == "Darwin":  # macOS
+        elif current_os == "Darwin": 
             return os.path.join(home, "Library", "Application Support", "minecraft")
-        else:  # Linux y otros Unix-like
+        else: 
             return os.path.join(home, ".minecraft")
 
     def open_readme(self):
@@ -284,3 +285,5 @@ if __name__ == "__main__":
     window = ModInstaller()
     window.show()
     app.exec_()
+
+
