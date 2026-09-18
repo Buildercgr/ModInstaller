@@ -78,7 +78,7 @@ class ModInstaller(QWidget):
 
         path_layout = QHBoxLayout()
         self.path_entry = QLineEdit()
-        default_minecraft_path = os.path.join(os.getenv("APPDATA"), ".minecraft")
+        default_minecraft_path = get_default_minecraft_path(self)
         self.path_entry.setText(default_minecraft_path)
         path_layout.addWidget(self.path_entry)
 
@@ -110,6 +110,17 @@ class ModInstaller(QWidget):
         self.help_button.setToolTip("Open README.md")
         self.help_button.clicked.connect(self.open_readme)
         layout.addWidget(self.help_button)
+
+    def get_default_minecraft_path(self):
+        current_os = platform.system()
+        home = os.path.expanduser("~") # Encuentra la carpeta de usuario en cualquier OS
+
+        if current_os == "Windows":
+            return os.path.join(os.getenv("APPDATA"), ".minecraft")
+        elif current_os == "Darwin":  # macOS
+            return os.path.join(home, "Library", "Application Support", "minecraft")
+        else:  # Linux y otros Unix-like
+            return os.path.join(home, ".minecraft")
 
     def open_readme(self):
         os.startfile(README_PATH)
